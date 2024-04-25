@@ -1,1 +1,44 @@
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {      //二分查找的时间复杂度为log2的n
+        int n = nums.size();
+        int left = 0,right = n-1,ans = n;                 //设置三个指针
+        while(left <= right){
+            int mid = (left + right)/2;              //求中间值
+            if(target <= nums[mid]){                 //目标值比中间值小或等，则移动右指针到中间值前面，同时改变ans值
+                ans = mid;
+                right = mid - 1;                     //目标值比中间值大，移动左指针到中间值后面
+            }
+            else{
+                left = mid + 1;
+            }
+        }
+        return ans;
+    }
+};
 
+
+
+
+//二分查找的另一个例子
+
+
+class Solution {
+public:
+    int mySqrt(int x) {
+        int left = 0,right =x,ans = -1;
+        while(left <= right){
+            int mid = (left +right)/2;
+            if(mid * mid <= x){
+                ans = mid;
+                left = mid + 1;
+
+            }
+            else{
+                right = mid - 1;
+            }
+        }
+        return ans;
+
+    }
+};
