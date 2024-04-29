@@ -1,0 +1,45 @@
+请你判断一个 9 x 9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。
+
+数字 1-9 在每一行只能出现一次。
+数字 1-9 在每一列只能出现一次。
+数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。（请参考示例图）
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        int hang[9][9];             //设置二维数组，行
+        int lie[9][9];               //设置二维数组列
+        int gongge33[3][3][9];          //设置三维数组，每一个3*3九宫格
+
+        memset(hang,0,sizeof(hang));    //把数组的前sizeof（数组）大小全部设为0，这里把创建的数组的值都设为0
+        memset(lie,0,sizeof(lie));
+        memset(gongge33,0,sizeof(gongge33));
+
+        for(int i =0;i<9;i++){       //两层循环遍历81宫格
+            for(int j =0;j<9;j++){
+                char c = board[i][j];         //每当遍历完一个格子，都用字符c记录下来
+                if(c != '.'){              //如果这个格子不为空
+                    int index = c-'0'-1;     //用字符c减去0的ASCII值得到c的整数int形式，再减去一得到数组索引
+                    hang[i][index]++;        //这个数组的这个格子加一（一开始为0）
+                    lie[j][index]++;          //纵向来看，列的这个格子也加一
+                    gongge33[i/3][j/3][index]++;  //九宫格来看，这个元素加一
+                    if(hang[i][index]>1||lie[j][index]>1||gongge33[i/3][j/3][index]>1){
+                        return false;    //这个元素多余一个就报错
+                    }
+
+                }
+            }
+        }
+        return true;
+
+    }
+};
