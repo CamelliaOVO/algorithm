@@ -40,3 +40,52 @@ public:
     }
 
 };
+
+
+
+回溯+递归全排列（含重复元素，并去除重复的组合序列）
+
+
+输入：nums = [1,1,2]
+输出：
+[[1,1,2],
+ [1,2,1],
+ [2,1,1]]
+
+class Solution {
+public:
+    vector<int>vic;  //定义一个标记数组，标记已经填过的数
+    void backcheck(vector<vector<int>>&res,vector<int>&num,int first,vector<int>&perm){
+        if(first == num.size()){      //perm为每一个符合要求的组合，二维res为总组合，num为题中所给的组合
+            res.push_back(perm);
+            return;
+        }
+
+        for(int i =0;i<(int)num.size();i++){     //依次固定题中所给组合的每一位，进行遍历
+            if(vic[i] || (i>0&&!vic[i-1]&&num[i] == num[i-1])){   //当次循环继续执行的条件
+                continue;
+
+            }
+        
+            perm.push_back(num[i]);   //先压入perm
+            vic[i] = 1;    //vic设为1
+            backcheck(res,num,first+1,perm);    //递归依次固定
+            vic[i] = 0;  //vic设为0
+            perm.pop_back();       //回溯
+        } 
+        
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>>res;
+        vector<int>perm;
+        vic.resize(nums.size());   //将vic的大小调整为nums的大小
+        sort(nums.begin(),nums.end()); //对nums排序
+        backcheck(res,nums,0,perm);
+        return res;
+        
+
+    }
+};
+
+
+
