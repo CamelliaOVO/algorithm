@@ -1,0 +1,39 @@
+1、给你数字 k ，请你返回和为 k 的斐波那契数字的最少数目，其中，每个斐波那契数字都可以被使用多次。（最少斐波那契数问题）
+
+斐波那契数字定义为：
+F1 = 1
+F2 = 1
+Fn = Fn-1 + Fn-2 ， 其中 n > 2 。
+数据保证对于给定的 k ，一定能找到可行解。
+
+
+class Solution {
+public:
+    int findMinFibonacciNumbers(int k) {
+        vector<int> fb;         //定义一个fb容器用来存放斐波那契数列
+        fb.emplace_back(1);      //先把斐波那契数列的前俩存进去，以方便后续的添加
+        fb.emplace_back(1);
+        int a =1;               //斐波那契数列的前两位令其为a和b
+        int b = 1;
+        while(a + b<= k){       //依据题意给出一个边界，存放斐波那契数列
+            int c = a +b ;        //斐波那契数列的逻辑，，用一个while循环书写
+            fb.emplace_back(c);
+            a = b;
+            b = c;                       
+        }
+
+        int ans= 0;             //ans计数，有多少个数最少能构成k，ans为那个最小值，ans个斐波那契数构成k
+        for(int i = fb.size() -1;i>= 0&&k>0;i--){   //倒着循环遍历
+            int num = fb[i];      //用num分别等于所有小于k的那些斐波那契数列数
+            if(k >= num){    //第一个num，也就是fb[i]一定是小于k的最大数，为了使数量最少，这个num是一定要存的
+                k -= num;        //k减去这个num剩下的看看最大能由哪个num构成，num继续等于fb[i-1].......
+                ans++;           //一直向下遍历，直到找到k刚好大于的斐波那契数（num值也就是fb[i-一个数]）
+            }                       //同时用ans计数，
+        }
+        return ans;
+
+        
+    }
+};
+
+如果要求是哪几个最少的斐波那契数，就是满足k>=num条件下的num值，设置一个新vector，每符合一个就存入。
