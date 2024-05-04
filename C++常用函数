@@ -30,3 +30,21 @@ stringstream ss(date); //date是一个总字符串，定义了一个字符串读
 string day,month,year;
 ss>>day>>month>>year;  //读取流中的各种类型的对象数据，按照顺序
 
+6、count()函数：count 函数是一个标准库函数，用于计算一个序列（通常是容器中的元素）中满足特定条件的元素的数量
+count(InputIt first, InputIt last, const T& value);
+            InputIt：输入迭代器的类型，可以是对容器元素的引用或者直接是容器的迭代器。
+            first：序列的起始迭代器。
+            last：序列的结束迭代器（不包括这个位置的元素）。
+            value：要计数的值。
+
+count(sentence.begin(), sentence.end(), ' '):计算sentence这个字符串中空格的数量
+
+7、for循环特殊用法
+for (const string& sentence: sentences) {
+            // 单词数 = 空格数 + 1
+            int cnt = count(sentence.begin(), sentence.end(), ' ') + 1;
+            res = max(res, cnt);
+        }
+sentences是一个字符串数组，遍历里面每一个字符串，可以将每个子字符串命名为sentence，实现方法为：const string& sentence
+字符串空格用' '
+
