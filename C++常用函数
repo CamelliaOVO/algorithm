@@ -48,3 +48,5 @@ for (const string& sentence: sentences) {
 sentences是一个字符串数组，遍历里面每一个字符串，可以将每个子字符串命名为sentence，实现方法为：const string& sentence
 字符串空格用' '
 
+8、substr（）:截取字符串的子字符串
+使用方式为str.substr(起始位置，长度):包含这个起始位置，长度从起始位置开始算,如果长度不写，则默认截取到字符串尾部
