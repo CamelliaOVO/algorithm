@@ -1,0 +1,93 @@
+图的广度优先遍历
+
+#include <iostream>
+#include <queue>
+using namespace std;
+
+const int MAX_SIZE = 8; // 图形的大小
+
+bool graph[MAX_SIZE][MAX_SIZE]; // 布尔二维数组表示图形的连通性
+bool visited[MAX_SIZE]; // 记录节点是否已经访问过
+
+// 图的基本操作：获取第一个邻居节点
+int FirstNeighbor(int node) {
+    for (int i = 0; i < MAX_SIZE; i++) {
+        if (graph[node][i]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// 图的基本操作：获取下一个邻居节点
+int NextNeighbor(int node, int neighbor) {
+    for (int i = neighbor + 1; i < MAX_SIZE; i++) {
+        if (graph[node][i]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// 广度优先遍历图形
+void BFS(int startNode) {
+    queue<int> q;//初始化队列q
+
+    // 将起始位置入队并标记为已访问
+    q.push(startNode);//将起始节点入队
+    visited[startNode] = true;//将起始节点的标记数组改为true，代表访问过
+    
+    while (!q.empty()) {
+        // 出队一个节点
+        int node = q.front();//每次令node为即将出队的队头节点
+        q.pop();//弹出队头节点
+
+        cout << node << " ";//访问出队的队头节点
+
+        // 遍历该节点的所有邻居节点，从第一个邻居结点开始，用for循环逐个找下一个没被标记的邻居节点
+        for (int neighbor = FirstNeighbor(node); neighbor != -1; neighbor = NextNeighbor(node, neighbor)) {
+            if (!visited[neighbor]) {
+                // 邻居节点未被访问过，则入队并标记为已访问
+                q.push(neighbor);//找到一个就入队一个
+                visited[neighbor] = true;//标记邻居结点为已访问
+                
+            }
+        }
+    }
+}
+
+int main() {
+    // 初始化布尔二维数组
+   
+    bool inputGraph[MAX_SIZE][MAX_SIZE] = {
+        {0, 1, 0, 0, 1, 0, 0, 0},
+
+        {1, 0, 0, 0, 0, 1, 0, 0},
+
+        {0, 0, 0, 1, 0, 1, 1, 0},
+
+        {0, 0, 1, 0, 0, 0, 1, 1},
+
+        {1, 0, 0, 0, 0, 0, 0, 0},
+
+        {0, 1, 1, 0, 0, 0, 1, 0},
+
+        {0, 0, 1, 1, 0, 1, 0, 1},
+
+        {0, 0, 0, 1, 0, 0, 1, 0},
+
+    };
+    memcpy(graph, inputGraph, sizeof(inputGraph));
+
+    // 初始化visited数组
+    memset(visited, false, sizeof(visited));
+
+    // 遍历每个节点，基于图的连通性合理地选择遍历的起始位置（防止非连通图遍历不全）
+    for (int startNode = 1; startNode < MAX_SIZE; startNode++) {
+        if (!visited[startNode]) {
+            BFS(startNode);
+        }
+    }
+
+    return 0;
+}
