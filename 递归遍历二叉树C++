@@ -103,14 +103,14 @@ struct TreeNode {
 };
 
 // 递归函数进行后序遍历
-void postorderTraversal(TreeNode* node) {
+void postOrder(TreeNode* node) {
     if (node == NULL) {
         return;  // 如果节点为空，则直接返回
     }
     // 先递归遍历左子树
-    postorderTraversal(node->left);
+    postOrder(node->left);
     // 再递归遍历右子树
-    postorderTraversal(node->right);
+    postOrder(node->right);
     // 最后访问根节点
     cout << node->val << " ";
 }
@@ -131,7 +131,7 @@ int main() {
     root->right->right = new TreeNode(7);
 
     // 执行后序遍历
-    postorderTraversal(root);
+    postOrder(root);
 
     return 0;
 }
