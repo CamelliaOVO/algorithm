@@ -1,0 +1,51 @@
+1、丑数
+丑数 就是只包含质因数 2、3 和 5 的正整数。
+给你一个整数 n ，请你判断 n 是否为 丑数 。如果是，返回 true ；否则，返回 false 。
+class Solution {
+public:
+    bool isUgly(int n) {
+        if(n <= 0){
+            return false;
+        }
+        else{
+            vector<int> mps = {2,3,5};
+            for(int mp : mps){
+                while(n % mp == 0){
+                    n /= mp;
+                }
+            }
+        }
+        return n == 1;
+
+    }
+};
+
+
+2、回文数
+给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
+
+回文数
+是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+
+例如，121 是回文，而 123 不是。
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        //算法：反转x的后半部分，看看和前半部分是否一样
+        
+        
+        if(x < 0  || (x % 10 == 0 && x != 0 )){   //先排除x的负数情况或者x以0结尾的情况（x不为0）
+            return false;
+        }
+        
+        int rev = 0;
+        while(x > rev){
+            rev = rev * 10 + x%10;  //rev作为x的后半部分的反转
+            x /=10;  //每次改变x，使最后x的值为前半部分的值
+        }
+
+        return x == rev || x == rev / 10;   //考虑到x的位数为偶数和奇数的情况
+    
+
+    }
+};
