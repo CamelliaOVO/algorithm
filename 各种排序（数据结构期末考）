@@ -14,3 +14,22 @@ void InsertSort(int A[],int n){
 }
 空间复杂度：O(1)
 时间复杂度：O(n^2)主要来自对比关键字、移动元素，若有n个元素，则需要n-1趟处理
+
+2、希尔排序（插入排序的进阶）
+void ShellSort(int A[],int n){
+    int d, i, j;
+    for(d =n/2;d>=1;d=d/2){
+        for(i = d+1;i<=n;++i){
+            if(A[i]<A[i-d]){
+                A[0] = A[i];
+                for(j = i-d;j>0&&A[0]<A[j];j-=d){
+                    A[j+d] = A[j];
+                }
+                A[j+d] = A[0];
+            }
+           
+        }
+    }
+}
+空间复杂度：O(1)
+最坏时间复杂度:O(n^2)
