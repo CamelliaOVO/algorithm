@@ -58,4 +58,32 @@ void BubbleSort(int A[],int n){
 最坏和平均时间复杂度：O（n^2）
 
 4、快速排序
+int Partition(int A[],int low,int high){ //得到划分枢轴存放的位置
+    int pivot=A[low];
+    while(low<high){
+        while(low<high&&A[high]>=pivot){
+            --high;
+        }
+        A[low] = A[high];
+        while(low<high&&A[low<=pivot){
+            ++low;
+        }
+        A[high] = A[low];
+    }
+    A[low] = pivot;
+    return low;
+}
+
+void QuickSort(int A[],int low,int high){
+    if(low<high){
+        int pivotpos=Partition(A,low,high);//第一次划分
+        QuickSort(A,low,pivotpos-1);//再次划分左半部分
+        QuickSort(A,pivotpos+1,high);//再次划分右半部分
+        
+    }
+    
+}
+
+时间复杂度：O（n*递归层数）
+空间复杂度：O(递归层数)
 
