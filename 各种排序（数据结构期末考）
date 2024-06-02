@@ -158,3 +158,6 @@ void MergeSort(int A[],int low,int high){
         Merge(A,low,mid,high);//把左右两个有序序列归并
     }
 }
+时间复杂度：O(nlogn)
+空间复杂度：O(n)
+稳定
