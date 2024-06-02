@@ -11,3 +11,27 @@ int Search_Seq(SStable ST,ElemType key){
     for(i = ST.TableLen;ST.elem[i] != key;i--)
     return i;
 }
+时间复杂度：O(n)
+
+2、折半查找（二分查找）
+typedef struct{
+    ElemType *elem;
+    int TableLen;
+}SSTable;
+
+//二分查找
+int Binary_Search(SStable L,ElemType key){
+    int low=0,high=L.TableLen-1,mid;
+    while(low<=high){
+        mid=(low+high)/2;
+        if(L.elem[mid] == key){
+            return mid;
+        }else if(key <L.elem[mimd]){
+            high = mid-1;   
+        }else{
+            low = mid+1;
+        }
+    }
+    return -1;
+}
+时间复杂度:O(logn)
