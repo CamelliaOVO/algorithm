@@ -124,3 +124,37 @@ void HeapSort(int A[],int len){
 时间复杂度：O(nlogn)
 空间复杂度：O(1)
 不稳定
+
+
+6、归并排序
+int *B=(int *)malloc(n*sizeof(int));
+//把两个有序的序列归并，具体如何让两个序列有序，需要递归实现
+void Merge(int A[],int low,int mid,int high){
+    int i,j,k;
+    for(k=low;k<=high;k++){
+        B[k]=A[k];
+    }
+    for(i=low,j=mid+1,k=i;i<=mid && j<=high;k++){
+        if(B[i]<B[j]){
+            A[k]=B[i++];//此处是先把B[i]赋给A[i]，再把i++
+        }
+        else{
+            A[k]=B[j++];
+        }
+    }
+    while(i<mid){
+        A[k++]=B[i++];//先把B[i]赋给A[k++]，再把i++
+    }
+    while(j<high){
+        A[k++]=B[j++];
+    }
+}
+//归并排序
+void MergeSort(int A[],int low,int high){
+    if(low<high){
+        int mid=(low+high)/2;
+        MergeSort(A,low,mid);  //递归对左半部分归并排序
+        MergeSort(A,mid+1,high);//递归对右半部分归并排序
+        Merge(A,low,mid,high);//把左右两个有序序列归并
+    }
+}
