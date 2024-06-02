@@ -1,0 +1,13 @@
+1、顺序查找
+typedef struct{
+    ElemType *elem;
+    int TableLen;
+}SSTable;
+
+//顺序查找
+int Search_Seq(SStable ST,ElemType key){
+    ST.elem[0]=key;//哨兵
+    int i;
+    for(i = ST.TableLen;ST.elem[i] != key;i--)
+    return i;
+}
