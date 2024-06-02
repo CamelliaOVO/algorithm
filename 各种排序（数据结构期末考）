@@ -65,7 +65,7 @@ int Partition(int A[],int low,int high){ //得到划分枢轴存放的位置
             --high;
         }
         A[low] = A[high];
-        while(low<high&&A[low<=pivot){
+        while(low<high&&A[low]<=pivot){
             ++low;
         }
         A[high] = A[low];
