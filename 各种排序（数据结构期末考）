@@ -87,3 +87,36 @@ void QuickSort(int A[],int low,int high){
 时间复杂度：O（n*递归层数）
 空间复杂度：O(递归层数)
 
+
+5、堆排序
+//调整为大根堆
+void HeadAdjust(int A[],int k,int len){
+    A[0]=A[k];
+    for(int i =2*k;i<=len;i*=2){
+        if(i<len && A[i]<A[i+1]){
+            i++;
+        }
+        if(A[0]>=A[i]){
+            break;
+        }
+        else{
+            A[k] = A[i];
+            k = i;
+        }
+    }
+    A[k]=A[0];
+}
+//建立大根堆
+void BuildMaxHeap(int A[],int len){
+    for(int i=len/2;i>0;i--){
+        HeadAdjust(A,j,len);
+    }
+}
+//堆排序
+void HeapSort(int A[],int len){
+    BuildMaxHeap(A,len);
+    for(int i=len;i>1;i--){
+        swap(A[i],A[1]);
+        HeadAdjust(A,1,i-1);
+    }
+}
