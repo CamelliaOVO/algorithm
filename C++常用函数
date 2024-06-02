@@ -24,7 +24,7 @@ unordered_map<string,string>smonth = {
         };
 
 定义了一个键值对字符串类型的哈希表
-unordered_set<int>存储单个值，unordered_map<int>存储键值对。
+unordered_set<int>存储单个值（不含重复元素，适合求种类时使用！！！！！），unordered_map<int>存储键值对。
 
 5、stringstream:允许字符串读写
 stringstream ss(date); //date是一个总字符串，定义了一个字符串读写流对象ss
