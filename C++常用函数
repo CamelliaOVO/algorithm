@@ -54,3 +54,9 @@ sentences是一个字符串数组，遍历里面每一个字符串，可以将�
 
 9、stoi():stoi是一个字符串转换函数，用于将字符串转换为整数。
 用法：int num = stoi(str);
+
+10、make_pair()函数
+auto p = make_pair(xx,yy),将pair键值对创造，并赋给未知类型变量p，也可以赋给一个键值对类型数组。
+
+11、头文件初定义
+#define ll long long       //将long long类型变量定义名称为ll，此后可以将long long x写为ll x
