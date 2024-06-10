@@ -109,7 +109,7 @@ void HeadAdjust(int A[],int k,int len){
 //建立大根堆
 void BuildMaxHeap(int A[],int len){
     for(int i=len/2;i>0;i--){
-        HeadAdjust(A,j,len);
+        HeadAdjust(A,i,len);
     }
 }
 //堆排序
