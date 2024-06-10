@@ -60,3 +60,16 @@ auto p = make_pair(xx,yy),将pair键值对创造，并赋给未知类型变量p�
 
 11、头文件初定义
 #define ll long long       //将long long类型变量定义名称为ll，此后可以将long long x写为ll x
+
+12、
+memcpy()函数
+void *memcpy(void *dest, const void *src, size_t n);//复制整体用
+dest：目标地址，即复制到的位置。
+src：源地址，即被复制的数据的原始位置。
+n：要复制的字节数。
+
+memset()函数
+void *memset(void *s, int c, size_t n);//赋初值用
+s：指向要填充的内存块的指针。
+c：要被设置的字节值。尽管参数被声明为 int，但只有低字节的 8 位有意义。
+n：要被设置为该值的字节数。
