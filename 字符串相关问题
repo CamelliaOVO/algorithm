@@ -1,0 +1,26 @@
+1、字符串相加问题（数字型字符串）
+给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和并同样以字符串形式返回。
+你不能使用任何內建的用于处理大整数的库（比如 BigInteger）， 也不能直接将输入的字符串转换为整数形式。
+
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        int m=num1.size()-1;
+        int n=num2.size()-1;
+        int add=0;
+        string ans="";
+        while(m >=0 || n >= 0 || add >0){ //add>0是考虑到竖式加法加到最前面的一位时还有进位，需要再把这个进位add单独加一位
+            int x = m>=0?num1[m]-'0':0;
+            int y = n>=0?num2[n]-'0':0;
+            int res = x+y+add;
+            
+            ans.push_back('0'+res%10);
+            add = res/10;
+            --m;
+            --n;
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+
+    }
+};
